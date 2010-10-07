@@ -1,0 +1,32 @@
+JomAuthorization
+================
+
+The authorization method is inspired by the
+authorization recipe in "Rails Recipes" and
+this blog entry:
+
+  http://metaautonomo.us/2008/09/30/easy-role-based-authorization
+
+Each user belongs to a single Role. Each role
+has multiple permissions identified by their
+name. You can check if a user belongs to role
+with the dynamic "is_role?" method:
+
+  user.is_admin?
+  user.is_admin_or_editor?
+  etc ...
+
+You can check if the user has permission to do
+something using the "can_xyz?" method:
+
+  user.can_edit_page?
+  user.can_view_published_page?
+  user.can_view_unpublished_page?
+
+Example
+=======
+
+Example goes here.
+
+
+Copyright (c) 2010 Jonatan Magnusson, released under the MIT license
