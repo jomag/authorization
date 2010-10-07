@@ -1,4 +1,4 @@
 # desc "Explaining what the task does"
-# task :jom_authorization do
+# task :fjomp_authorization do
 #   # Task goes here
 # end

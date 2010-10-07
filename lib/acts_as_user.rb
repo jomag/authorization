@@ -2,7 +2,7 @@
 
 require "digest/md5"
 require "digest/sha1"
-require "activerecord"
+require "rails"
    
 class Role < ActiveRecord::Base
   has_many :users

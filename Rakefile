@@ -1,3 +1,6 @@
+# encoding: utf-8
+
+require 'rubygems'
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
@@ -16,7 +19,7 @@ end
 desc 'Generate documentation for the jom_authorization plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'JomAuthorization'
+  rdoc.title    = 'FjompAuthorization'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
