@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/acts_as_user.rb"
+require 'acts_as_user.rb'
 
-ActiveRecord::Base.send :include, Jom::Authorization
+ActiveRecord::Base.send :include, Fjomp::Authorization
 
