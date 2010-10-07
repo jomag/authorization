@@ -16,7 +16,10 @@ Gem::Specification.new do |s|
     'lib/**/*',
     'rails/**/*',
     'test/**/*',
+    'init.rb',
     'README*',
     'LICENSE*'
   ]
+
+  s.require_path = 'lib'
 end
