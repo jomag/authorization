@@ -2,6 +2,7 @@
 
 require "digest/md5"
 require "digest/sha1"
+require "activerecord"
    
 class Role < ActiveRecord::Base
   has_many :users
@@ -17,7 +18,7 @@ class Permission < ActiveRecord::Base
   validates_uniqueness_of :name
 end
 
-module Jom
+module Fjomp
   module Authorization
     # Called automatically when this module is loaded
     def self.included(base)
