@@ -1,4 +1,4 @@
-require 'acts_as_user.rb'
+require 'acts_as_user'
 
 ActiveRecord::Base.send :include, Fjomp::Authorization
 
