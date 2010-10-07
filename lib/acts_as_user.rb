@@ -6,27 +6,31 @@
    
 module Fjomp
   module Authorization
-    class Role < ActiveRecord::Base
-      has_many :users
-      has_and_belongs_to_many :permissions
-  
-      validates_presence_of :name
-      validates_uniqueness_of :name
-    end
-
-    class Permission < ActiveRecord::Base
-      has_and_belongs_to_many :roles
-      validates_presence_of :name
-      validates_uniqueness_of :name
-    end
-
     # Called automatically when this module is loaded
     def self.included(base)
-      base.send :extend, ClassMethods
+      base.send :extend, UserClassMethods
+      base.send :extend, RoleClassMethods
+      base.send :extend, PermissionClassMethods
     end
 
+    module RoleClassMethods
+      def acts_as_role
+        has_many :users
+        has_and_belongs_to_many :permissions
+        validates_presence_of :name
+        validates_uniqueness_of :name
+      end
+    end
 
-    module ClassMethods
+    module PermissionClassMethods
+      def acts_as_permission
+        has_and_belongs_to_many :roles
+        validates_presence_of :name
+        validates_uniqueness_of :name
+      end
+    end
+
+    module UserClassMethods
       def acts_as_user(*args)
         # Each user has a single role
         belongs_to :role
