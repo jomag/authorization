@@ -28,7 +28,18 @@ module ActsAsUser::InstanceMethods
     str.split(/_or_/)
   end
 
+  def respond_to?(method_id, *args)
+    m = method_id.to_s
+    return true if matches_dynamic_role_check?(m)
+    return true if matches_dynamic_permission_check?(m)
+    super(method_id, *args)
+  end
+
   def method_missing(method_id, *args)
+    # FIXME: Use define_method for each is_xyz? or can_xyz? method.
+    #        Methods should be defined on first use. This will be
+    #        more efficient than the current solution
+    
     # Match with role detection methods:
     #   user.is_admin?
     #   user.is_editor_or_admin?
@@ -56,8 +67,7 @@ module ActsAsUser::InstanceMethods
       end
     end
 
-    # No match
-    super
+    super(method_id)
   end
 end
 
