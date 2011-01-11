@@ -60,11 +60,22 @@ module ActsAsUser::InstanceMethods
     if m = matches_dynamic_permission_check?(method_id)
       return false if permissions.nil?
 
-      if permissions.find_by_name(m.captures.first)
-        return true
-      else
-        return false
+      self.permissions.each do |perm|
+        if m.captures.first == perm.name
+          return true
+        end
       end
+      
+      return false
+
+      # Old implementation. This method caused another SQL-query
+      # even if the user had been eager loaded
+      #
+      #if self.permissions.find_by_name(m.captures.first)
+      #  return true
+      #else
+      #  return false
+      #end
     end
 
     super(method_id)
